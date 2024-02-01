@@ -1,0 +1,30 @@
+{
+  "Print to console": {
+    "prefix": "cl",
+    "scope": "javascript, typescript, javascriptreact, typescriptreact",
+    "body": ["console.log($1)"],
+    "description": "console.log"
+  },
+  "Func React Comp": {
+    "prefix": "rfc",
+    "scope": "javascript, typescript, javascriptreact, typescriptreact",
+    "body": [
+      "function ${1:${TM_FILENAME_BASE}}() {",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\t$0",
+      "\t\t</div>",
+      "\t)",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "React Func Comp"
+  },
+  "importCSSModule": {
+    "prefix": "csm",
+    "scope": "javascript, typescript, javascriptreact, typescriptreact",
+    "body": ["import styles from './${TM_FILENAME_BASE}.module.css"],
+    "description": "Import CSSModule as styles"
+  },
+}

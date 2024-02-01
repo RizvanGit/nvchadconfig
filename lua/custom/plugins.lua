@@ -203,11 +203,41 @@ local plugins = {
       end, {desc = "Run Linter"})
     end
   },
+  {
+    "windwp/nvim-ts-autotag",
+    lazy = false,
+    ft = {"javascriptreact", "typescriptreact", "tsx"},
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end
+  },
   -- To make a plugin not be loaded
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   enabled = false
-  -- },
+  {
+    "NvChad/nvim-colorizer.lua",
+    enabled = true,
+    priority = 1000,
+    config = function()
+      require("colorizer").setup({
+        user_default_options = {
+          tailwind = true,
+          priority = 1000
+        }
+      })
+    end
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "roobert/tailwindcss-colorizer-cmp.nvim", config = true
+    },
+    opts = function (_, opts)
+      local format_kinds = opts.formatting.format
+      opts.formatting.format = function(entry, item)
+        format_kinds(entry, item)
+        return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+      end
+    end,
+  },
 
   -- All NvChad plugins are lazy-loaded by default
   -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`

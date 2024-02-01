@@ -1,6 +1,10 @@
 local M = {}
 
 M.treesitter = {
+  -- autotag = {
+  --   enable = true,
+  --   filetypes = {"html", "jsx", "tsx"},
+  -- },
   ensure_installed = {
     "vim",
     "lua",
@@ -11,6 +15,10 @@ M.treesitter = {
     "typescript",
     "tsx",
     "c",
+    "dockerfile",
+    "json",
+    "make",
+    "yaml",
     "markdown",
     "markdown_inline",
   },
@@ -57,5 +65,17 @@ M.nvimtree = {
     },
   },
 }
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    underline = true,
+    virtual_text = {
+      spacing = 5,
+      severity_limit = "Warning",
+    },
+    update_in_insert = true,
+  }
+)
 
 return M

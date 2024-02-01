@@ -7,4 +7,6 @@
 -- })
 local opt = vim.opt
 
-opt.clipboard = ""
+vim.g.vscode_snippets_path = "./snippets"
+
+opt.clipboard = "unnamedplus"
